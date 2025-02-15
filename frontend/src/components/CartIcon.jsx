@@ -12,8 +12,8 @@ const CartIcon = () => {
     <div className="relative">
          <Link to='/cart' className='relative'>
 <FiShoppingCart className='w-8 h-8 cursor-pointer' />
-<p className="absolute right-[-42px] bottom-[-42px] w-5 text-center leading-4
- bg-red-500 text-white aspect-square rounded-full text-[12px]">   
+<p className="absolute right-[-42px] bottom-[-22px] w-5 text-center leading-4
+ bg-red-500 text-white aspect-square rounded-full text-[15px]">   
 {String(getTotalItems())}
     </p>
 </Link> 

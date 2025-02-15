@@ -6,11 +6,11 @@ import Image4 from '../assets/presets/m-80.webp';
 
 const sliderSettings = {
   autoplay: true, 
-  autoplaySpeed: 1000, 
+  autoplaySpeed: 2000, 
   arrows: false, 
   dots: false, 
   infinite: true, 
-  speed: 5000, 
+  speed: 8000, 
   fade: true, 
 };
 
@@ -24,7 +24,7 @@ const Hero = () => {
               <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
               <p className='font-medium text-sm md:text-base'>OUR BEST SELLERS</p>
             </div>
-            <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed'>BODY RELAXERS</h1>
+            <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed'>BOD RELAXERS</h1>
             <div className='flex items-center gap-2'>
               <p className='font-semibold text-sm md:text-base'>SHOP NOW</p>
               <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
