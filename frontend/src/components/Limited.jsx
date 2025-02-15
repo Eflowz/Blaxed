@@ -14,7 +14,7 @@ const Limited = ({ endDate }) => {
     const closeModal = () => {
         setSelectedProduct(null);
     };
-    const { addToCart } = useContext(ShopContext);
+    const { currency, addToCart } = useContext(ShopContext);
     const limitedProducts = products.filter(product => product.limited === true);
 
     return (

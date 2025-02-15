@@ -4,7 +4,6 @@ import products from "../assets/presets/products";
 import { FiSearch} from 'react-icons/fi';
 import ProductItem from "../components/ProductItem";
 
-
 const Flower = () => {
   const [selectedFilters, setSelectedFilters] = useState({
     featured: [],
@@ -47,11 +46,8 @@ const Flower = () => {
     setShowSidebar(!showSidebar);
   };
 
-
-
   const flowerProducts = products.filter((product) => product.flower === true);
 
-  // Apply filters to the flower products
   const filteredProducts = flowerProducts.filter((product) => {
     const matchesFeatured = selectedFilters.featured.length === 0 || (product.featured && selectedFilters.featured.includes(product.featured.trim())); 
     const matchesSubCategories = selectedFilters.subCategories.length === 0 || (product.subCategories && selectedFilters.subCategories.includes(product.subCategories));
@@ -184,5 +180,3 @@ const Flower = () => {
 };
 
 export default Flower;
-
-    

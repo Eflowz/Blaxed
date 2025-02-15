@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import logo from '../assets/presets/logo.png';
+
 
 const Footer = () => {
     const [location, setLocation] = useState("Holyoke, Massachusetts");
@@ -12,12 +14,12 @@ const Footer = () => {
 
     return (
 <footer className="bg-black text-white py-8">
-<div className="container mx-auto flex flex-col sm:flex-row gap-6 px-4 sm:px-0">
+<div className="container mx-auto flex flex-col sm:flex-row gap-8 px-4 sm:px-0">
     
-    {/* Left: Logo Section */}
     <div className="flex flex-col items-start">
-        <img src="/path/to/logo.png" alt="Dazed Logo" className="mb-4 w-24" />
-        <p className="text-gray-400">&copy; 2023+</p>
+
+        <img src={logo} alt="Dazed Logo" className="h-[90px] w-[220px] md:h-[90px] md:w-[180px]"/>
+        <p className="text-gray-400">&copy; 2024+</p>
     </div>
 
     <div className="text-center sm:text-left">
@@ -38,17 +40,17 @@ const Footer = () => {
     {location}: Monday to Sunday: 8am – 11pm
     </p>
     <p className="font-bold text-sm mt-4">Press Enquiries:</p>
-    <a href="mailto:PR@dazed.fun" className="text-sm">PR@dazed.fun</a>
+    <a href="mailto:PR@dazed.fun" className="text-sm">PR@blaxed.fun</a>
     <p className="text-sm mt-4">
     For use only by adults 21 years of age and older. Keep out of reach of children and pets. Please consume responsibly. There may be health risks associated with the consumption of this product.
     </p>
     </div>
-    <div className="flex flex-col sm:items-end text-center sm:text-right">
+    {/* <div className="flex flex-col sm:items-end text-center sm:text-right">
     <div className="mb-4">
     <a href="#" className="text-white ml-4">About</a>
     <a href="#" className="text-white ml-4">Order Now</a>
     </div>
-    </div>
+    </div> */}
 </div>
         </footer>
     );

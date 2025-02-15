@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Hero/>
-      <Limited endDate="2025-01-08T23:59:59"/>
+      <Limited endDate="2025-02-15T23:59:59"/>
       <BestSeller/>
       <AllCategories/>
       <Display/>

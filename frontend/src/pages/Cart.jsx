@@ -19,10 +19,10 @@ const Cart = () => {
 
   return (
     <div className="cart-container p-6">
-      <h2 className="text-3xl font-semibold mb-4">Your Cart</h2>
+      <h2 className="text-3xl font-semibold mb-4 text-center">Your Cart</h2>
 
       {cart.length === 0 ? (
-        <p className="text-gray-500">Your cart is empty.</p>
+        <p className="text-gray-500 text-center">Your Cart is Empty Try adding something.</p>
       ) : (
         <div className="cart-items">
           <ul className="space-y-4">
