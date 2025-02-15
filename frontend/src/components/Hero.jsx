@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import Hiro from '../assets/presets/hero_img.png';  
-import Image2 from '../assets/frontend_assets/p_img1.png';  
-import Image3 from '../assets/frontend_assets/p_img3.png';  
+import Image2 from '../assets/presets/category-image-flower.png';  
+import Image3 from '../assets/presets/phkj.webp';  
+import Image4 from '../assets/presets/m-80.webp';  
 
 const sliderSettings = {
   autoplay: true, 
@@ -24,7 +24,7 @@ const Hero = () => {
               <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
               <p className='font-medium text-sm md:text-base'>OUR BEST SELLERS</p>
             </div>
-            <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed'>Latest Arrivals</h1>
+            <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed'>BODY RELAXERS</h1>
             <div className='flex items-center gap-2'>
               <p className='font-semibold text-sm md:text-base'>SHOP NOW</p>
               <p className='w-8 md:w-11 h-[2px] bg-[#414141]'></p>
@@ -39,6 +39,9 @@ const Hero = () => {
             </div>
             <div>
               <img src={Image3} alt="image 3" className='w-full  lg:h-[400px] lg:w-auto  fade-out lg:ml-[300px]' />
+            </div>
+            <div>
+              <img src={Image4} alt="image 3" className='w-full  lg:h-[400px] lg:w-auto  fade-out lg:ml-[300px]' />
             </div>
           </Slider>
         </div>

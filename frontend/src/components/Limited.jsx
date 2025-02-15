@@ -19,6 +19,9 @@ const Limited = ({ endDate }) => {
 
     return (
     <div className="limited-offer mt-5">
+            <div className='mx-auto sm:px-5 md:px-12 mb-4'>
+            <h1 className="text-lg blink ,">All products available for pickup today.</h1>
+            </div>
         <div className="container mx-auto">
             <div className="flex space-x-9 items-center">
                 <h2 className="text-2xl sm:text-md font-semibold text-red-500 px-4 sm:px-4">Limited Offer</h2>
