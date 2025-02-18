@@ -9,6 +9,7 @@ import Vapes from './pages/Vapes';
 import Edibles from './pages/Edibles';
 import Concentrate from './pages/Concentrate';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import Apparel from './pages/Apparel';
 import Collection from './pages/Collection';
 import AllCategories from './components/category/AllCategories';
@@ -26,18 +27,40 @@ const App = () => {
     localStorage.setItem('hasCompletedForm', 'true');
   };
 
+  // Use a flag to track if the page is being reloaded
   useEffect(() => {
-    const formStatus = localStorage.getItem('hasCompletedForm');
-    if (formStatus === 'true') {
-      setHasCompletedForm(true);
+    const handleBeforeUnload = (event) => {
+      // Check if the event is a page reload
+      if (event.type === 'beforeunload') {
+        // Set a temporary flag in sessionStorage to indicate a reload
+        sessionStorage.setItem('isReloading', 'true');
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  // Check for the reload flag when the component mounts
+  useEffect(() => {
+    const isReloading = sessionStorage.getItem('isReloading') === 'true';
+
+    if (isReloading) {
+      // If it's a reload, clear the reload flag but do not reset hasCompletedForm
+      sessionStorage.removeItem('isReloading');
+    } else {
+      // If it's not a reload (e.g., first visit or page quit), reset hasCompletedForm
+      localStorage.removeItem('hasCompletedForm');
+      setHasCompletedForm(false);
     }
   }, []);
 
   return (
     <div>
-
-<ShopProvider>
-        
+      <ShopProvider>
         {hasCompletedForm && <Navbar />}
         <ToastContainer />
         <Routes>
@@ -45,7 +68,6 @@ const App = () => {
             path="/form"
             element={<MultiStepForm onComplete={handleFormCompletion} />}
           />
-
 
           {/* Redirect to the form if it's not completed */}
           {!hasCompletedForm ? (
@@ -62,6 +84,7 @@ const App = () => {
               <Route path="/apparel&accessories" element={<Apparel />} />
               <Route path="/collection" element={<Collection />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
               <Route path="/all-categories" element={<AllCategories />} />
             </>
           )}
