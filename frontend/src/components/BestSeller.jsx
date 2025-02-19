@@ -8,41 +8,19 @@ import { ShopContext } from '../context/ShopContext';
 import baddest from '../assets/presets/zebra-stripes.jpg';
 import AOS from 'aos'; 
 import 'aos/dist/aos.css';  
-
-const PreviousArrow = (props) => {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="absolute z-10 left-0 top-[160px] transform -translate-y-1/2 bg-yellow-500 text-white p-2 rounded-full hover:bg-red-600 transition"
-    >
-      <IoIosArrowBack size={25} />
-    </button>
-  );
-};
-
-const NextArrow = (props) => {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="absolute right-0 top-[165px] transform -translate-y-1/2 bg-[#f93827] text-white p-2 rounded-full hover:bg-gray-600 transition"
-    >
-      <IoIosArrowForward size={25} />
-    </button>
-  );
-};
+import { useTranslation } from 'react-i18next'; // Import the translation hook
 
 const BestSeller = () => {
   const { bestSellers } = useContext(ShopContext);
+  const { t } = useTranslation(); // Use the translation hook
 
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PreviousArrow />,
+    nextArrow: <IoIosArrowForward />,
+    prevArrow: <IoIosArrowBack />,
     responsive: [
       {
         breakpoint: 1024,
@@ -80,10 +58,10 @@ const BestSeller = () => {
         <div className="absolute inset-0 bg-[#f93827] opacity-90"></div>
         <div className="relative z-10">
           <h2 className="font-bold text-white text-5xl sm:text-3xl mb-2" data-aos="fade-up">
-            BEST SELLERS
+            {t('best_sellers')} {/* Translated "Best Sellers" */}
           </h2>
-          <p className="w-3/4 m-auto text-xs sm:text-[16px] md:text-2xl text-white" data-aos="fade-up" data-aos-delay="200">
-            Experience the best, shop our top picks.
+          <p className="w-3/4 m-auto text-sm  sm:text-[16px] md:text-2xl text-white" data-aos="fade-up" data-aos-delay="200">
+            {t('experience_best_shop_picks')} {/* Translated "Experience the best, shop our top picks" */}
           </p>
         </div>
       </div>

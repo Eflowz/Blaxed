@@ -18,7 +18,7 @@ const Footer = () => {
     
     <div className="flex flex-col items-start">
 
-        <img src={logo} alt="Dazed Logo" className="h-[90px] w-[220px] md:h-[90px] md:w-[180px]"/>
+        <img src={logo} alt="Dazed Logo" className="h-[90px] w-[190px] md:h-[90px] md:w-[180px]"/>
         <p className="text-gray-400">&copy; 2024+</p>
     </div>
 

@@ -19,7 +19,7 @@ const AllCategories = () => {
           <div className="absolute inset-0 bg-[#ff9d23] opacity-90"></div>
           <div className="relative z-10">
             <h2 className="font-bold text-white text-5xl sm:text-3xl">SHOP BY CATEGORY</h2>
-            <p className="w-3/4 m-auto text-xs sm:text-[16px] md:text-2xl text-white">
+            <p className="w-3/4 m-auto text-sm sm:text-[16px] md:text-2xl text-white">
               Explore our wide range of cannabis products and accessories.
             </p>
           </div>

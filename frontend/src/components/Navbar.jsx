@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import {  FiUser} from 'react-icons/fi';
 import { FaTimes } from "react-icons/fa";
-import Lang from './Lang';
+// import Lang from './Lang';
 import { Link, NavLink, useLocation } from 'react-router-dom'; 
 import logo from '../assets/presets/logo.png';
 import CartIcon from './CartIcon';
@@ -22,14 +22,14 @@ const Navbar = () => {
  
   return (
     <>
-    <Lang/>
+    {/* <Lang/> */}
     <nav className="bg-[#016c4f] top-0 left-0 right-0 z-50 shadow-lg">
       <div className="container mx-auto flex justify-between items-center p-4 md:p-6">
         <div>
           <Link to="/">
             <img
               src={logo}
-              className="h-[90px] w-[120px] md:h-[90px] md:w-[200px]"
+              className="h-[90px] w-[120px] md:h-[90px] md:w-[150px]"
               alt="Get High"
             />
           </Link>

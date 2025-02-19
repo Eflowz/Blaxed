@@ -16,6 +16,9 @@ import AllCategories from './components/category/AllCategories';
 import Footer from './components/Footer';
 import ShopProvider from './context/ShopContext';
 import MultiStepForm from './pages/MultiStepForm';
+import Lang from './components/Lang'; 
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n'; 
 
 const App = () => {
   const [hasCompletedForm, setHasCompletedForm] = useState(
@@ -27,12 +30,9 @@ const App = () => {
     localStorage.setItem('hasCompletedForm', 'true');
   };
 
-  // Use a flag to track if the page is being reloaded
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      // Check if the event is a page reload
       if (event.type === 'beforeunload') {
-        // Set a temporary flag in sessionStorage to indicate a reload
         sessionStorage.setItem('isReloading', 'true');
       }
     };
@@ -43,24 +43,21 @@ const App = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
-
-  // Check for the reload flag when the component mounts
   useEffect(() => {
     const isReloading = sessionStorage.getItem('isReloading') === 'true';
 
     if (isReloading) {
-      // If it's a reload, clear the reload flag but do not reset hasCompletedForm
       sessionStorage.removeItem('isReloading');
     } else {
-      // If it's not a reload (e.g., first visit or page quit), reset hasCompletedForm
       localStorage.removeItem('hasCompletedForm');
       setHasCompletedForm(false);
     }
   }, []);
 
   return (
-    <div>
+    <I18nextProvider i18n={i18n}>
       <ShopProvider>
+        <Lang />
         {hasCompletedForm && <Navbar />}
         <ToastContainer />
         <Routes>
@@ -91,7 +88,7 @@ const App = () => {
         </Routes>
         {hasCompletedForm && <Footer />}
       </ShopProvider>
-    </div>
+    </I18nextProvider>
   );
 };
 

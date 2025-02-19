@@ -1168,7 +1168,7 @@ const products = [
       strainType: "Sativa",
       weight: "1g",
       featured: "Specials",
-      limited: true
+      limited: false
     },
     {
       _id: "0o062",
@@ -1212,7 +1212,7 @@ const products = [
       strainType: "Sativa",
       weight: "1g",
       featured: "Specials",
-      limited: true
+      limited: false
     },
     {
       _id: "0o064",
@@ -1256,7 +1256,7 @@ const products = [
       strainType: "Hybrid",
       weight: "1g",
       featured: "Specials",
-      limited: true
+      limited: false
     }
   
 

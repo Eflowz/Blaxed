@@ -11,7 +11,7 @@ const Checkout = () => {
       <div className="flex flex-col md:flex-row justify-between items-start gap-6">
 
         {/* Cart Summary */}
-        <div className="flex-1">
+        <div className="flex-1 w-full md:w-auto">
           {cart.length === 0 ? (
             <p className="text-lg">Your cart is currently empty.</p>
           ) : (
@@ -59,7 +59,7 @@ const Checkout = () => {
         </div>
 
         {/* Payment Section */}
-        <div className="flex-1 bg-white p-6 rounded-lg shadow-lg">
+        <div className="flex-1 w-full md:w-auto bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-medium mb-4">Payment Information</h2>
 
           <form>
