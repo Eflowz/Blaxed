@@ -13,7 +13,6 @@ const ShopProvider = (props) => {
   const [subCategory, setSubCategory] = useState([]); 
   const [currency] = useState('$');
   const [cart, setCart] = useState([]);
-  const [tax] = useState(8); // Flat tax amount (you can adjust or make it dynamic)
 
   useEffect(() => {
     setProducts(productsData);
@@ -63,10 +62,9 @@ const ShopProvider = (props) => {
     return cart.reduce((total, item) => total + item.totalPrice, 0).toFixed(2);
   };
 
-  // Get total amount (subtotal + tax)
+  // Get total amount (now just the subtotal, no tax)
   const getTotalAmount = () => {
-    const subtotal = parseFloat(getSubtotal());
-    return (subtotal + tax).toFixed(2);
+    return getSubtotal(); 
   };
 
   const applyFilter = () => {
@@ -99,7 +97,7 @@ const ShopProvider = (props) => {
     setCart,
     getTotalItems,
     getSubtotal,
-    getTotalAmount, // This will give the total including taxes
+    getTotalAmount,
     removeFromCart,
     products,
     bestSellers,
@@ -108,7 +106,6 @@ const ShopProvider = (props) => {
     setCategory,
     setSubCategory,
     currency,
-    tax, 
   };
 
   return (

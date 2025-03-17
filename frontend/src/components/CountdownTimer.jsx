@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const CountdownTimer = ({ endDate }) => {
+const CountdownTimer = ({ endDate, onTimerEnd }) => {
   const [remainingTime, setRemainingTime] = useState(null);
 
   useEffect(() => {
@@ -19,11 +19,14 @@ const CountdownTimer = ({ endDate }) => {
       } else {
         setRemainingTime('Offer Ended');
         clearInterval(interval);
+        if (onTimerEnd) {
+          onTimerEnd(); // Call the callback when the timer ends
+        }
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [endDate]);
+  }, [endDate, onTimerEnd]);
 
   return (
     <div className="text-lg font-medium text-gray-800">

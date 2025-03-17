@@ -4,7 +4,7 @@ import { ShopContext } from '../context/ShopContext';
 import { FaTrashAlt } from 'react-icons/fa';
 
 const Cart = () => {
-  const { cart, removeFromCart, addToCart, getTotalItems, currency, tax } = useContext(ShopContext);
+  const { cart, removeFromCart, addToCart, getTotalItems, currency } = useContext(ShopContext);
 
   const handleIncrement = (item) => {
     addToCart(item._id, item.name, item.price, item.image);
@@ -19,14 +19,16 @@ const Cart = () => {
   };
 
   const subtotal = cart.reduce((total, item) => total + item.price * item.amount, 0);
-  const grandTotal = subtotal + tax;
+  const grandTotal = subtotal ;
 
   return (
     <div className="cart-container p-6">
       <h2 className="text-3xl font-semibold mb-4 text-center">Your Cart</h2>
 
       {cart.length === 0 ? (
-        <p className="text-gray-500 text-center">Your Cart is Empty. Try adding something.</p>
+        <p className="text-gray-500 text-center">Your Cart is Empty.
+        <br />
+        Add a product to get started.</p>
       ) : (
         <div className="flex flex-col lg:flex-row gap-12 py-8">
           <div className="cart-items lg:w-[750px]">
@@ -79,10 +81,6 @@ const Cart = () => {
               Subtotal: {currency}
               {subtotal.toFixed(2)}
             </p>
-            <p className="text-lg">
-              Tax: {currency}
-              {tax.toFixed(2)}
-            </p>
             <p className="text-lg font-semibold">
               Grand Total: {currency}
               {grandTotal.toFixed(2)}
@@ -92,8 +90,8 @@ const Cart = () => {
                 pathname: '/checkout',
                 state: {
                   cart,
-                  grandTotal, // Pass the grand total
-                  currency, // Pass currency if needed
+                  grandTotal, 
+                  currency,
                 },
               }}
             >
