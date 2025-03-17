@@ -1,6 +1,7 @@
 import React from 'react';
 import cardolo from '../assets/presets/card.png'
-import Payer from './payer';
+
+import PaymentFinal from './PaymentFinal';
 
 const PaymentForm = () => {
   return (
@@ -49,13 +50,13 @@ const PaymentForm = () => {
             />
           </div>
         </div>
-    <button class="flex items-center bg-blue-500 text-white  py-2 px-4 rounded-lg">
+    <button className="flex items-center bg-blue-500 text-white  py-2 px-4 rounded-lg">
             <img src={cardolo} alt="" className='mr-2 w-10 h-8' />
     <span>Pay with Card</span>
 </button>
       </form>
     </div>
-    <Payer/>
+    <PaymentFinal/>
     </>
   );
 };

@@ -2,9 +2,11 @@ import React from 'react'
 import cash from  '../assets/presets/cashapp.png';
 import { MdMessage } from "react-icons/md";
 
-const Payer = () => {
+
+const PaymentFinal = () => {
   return (
-    <div className="mt-4">
+    <>
+     <div className="mt-4">
     <h4 className="text-red-500 mb-4">*Other payment options</h4>
   
     <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
@@ -19,8 +21,9 @@ const Payer = () => {
   
      
     </div>
-  </div>    
-)
+  </div> 
+    </>
+  )
 }
 
-export default Payer
+export default PaymentFinal;
