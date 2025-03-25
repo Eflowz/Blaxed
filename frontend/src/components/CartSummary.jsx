@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import {ShopContext} from '../context/ShopContext'
-import { FaRegTrashAlt } from "react-icons/fa";
 
 const CartSummary = () => {
-  const { cart, removeFromCart, getTotalItems, getSubtotal, getTotalAmount, currency } = useContext(ShopContext);
+  const { cart, getTotalItems, getSubtotal, getTotalAmount, currency } = useContext(ShopContext);
 
   return (
-    <div className="bg-white p-6 md:w-[700px]">
+    <div className="bg-white p-6">
       {cart.length === 0 ? (
         <p className="text-lg">Your cart is currently empty.</p>
       ) : (
@@ -23,12 +22,6 @@ const CartSummary = () => {
                     <p className="text-sm font-medium">Total: {currency}{item.totalPrice.toFixed(2)}</p>
                   </div>
                 </div>
-                <button
-                  onClick={() => removeFromCart(item._id)}
-                  className="bg-[#ee1b1b] text-white px-3 py-2 rounded-lg hover:bg-red-600"
-                >
-                  <FaRegTrashAlt />
-                </button>
               </div>
             ))}
           </div>

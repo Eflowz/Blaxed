@@ -19,13 +19,13 @@ const Limited = ({ endDate }) => {
     };
 
     const handleOfferEnd = () => {
-        setOfferEnded(true); // Update state when offer ends
+        setOfferEnded(true); 
     };
 
     return (
     <div className="limited-offer mt-5">
         <div className='mx-auto sm:px-5 md:px-12 mb-4'>
-            <h5 className="text-lg blink">All products available for pickup today.</h5>
+            {/* <h5 className="text-lg blink">All products available for pickup today.</h5> */}
         </div>
         <div className="container mx-auto">
             <div className="flex space-x-9 items-center">

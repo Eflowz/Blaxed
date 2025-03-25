@@ -18,7 +18,9 @@ import AllCategories from './components/category/AllCategories';
 import Footer from './components/Footer';
 import ShopProvider from './context/ShopContext';
 import CartIcon from './components/CartIcon'
+import ThankYou from './pages/ThankYou';
 import Lang from './components/Lang';
+import Whatsapp from './components/Whatsapp';
 
 const App = () => {
   return (
@@ -29,6 +31,7 @@ const App = () => {
       <ScrollToTop>
       <ToastContainer />
         <CartIcon/>
+        <Whatsapp/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/flower" element={<Flower />} />
@@ -41,6 +44,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/all-categories" element={<AllCategories />} />
+        <Route path="/thank-you" element={<ThankYou />} />
       </Routes>
       </ScrollToTop>
       </AnimatePresence>

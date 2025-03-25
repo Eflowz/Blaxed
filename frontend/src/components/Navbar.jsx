@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/presets/logo.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Add or remove the no-scroll class based on isOpen state
+    if (isOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+
+    // Cleanup function to remove the class when component unmounts
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, [isOpen]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -13,6 +27,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Flower", path: "/flower" },
     { name: "Pre-Rolls", path: "/prerolls" },
+    { name: "Vapes", path: "/vapes" },
     { name: "Edibles", path: "/edibles" },
     { name: "Concentrates", path: "/concentrates" },
     { name: "Apparel", path: "/apparel&accessories" },
@@ -24,7 +39,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="text-white text-2xl font-bold">
-          <img src={logo} alt="" className="h-[90px] w-[140px] md:h-[90px] md:w-[150px]"/>
+            <img src={logo} alt="" className="h-[90px] w-[140px] md:h-[90px] md:w-[150px]"/>
           </Link>
         </div>
 
@@ -32,29 +47,23 @@ const Navbar = () => {
         <div className="hidden md:flex ">
           {routes.map((route, index) => (
             <Link
-              key={index}
-              to={route.path}
-              className="text-white hover:bg-blue-700 px-4 py-2 rounded"
-            >
-              {route.name}
-            </Link>
+            key={index}
+            to={route.path}
+      className="text-white px-4 py-2 relative 
+                hover:text-[#F8ED8c]
+                after:content-[''] after:absolute after:bottom-1 after:left-4 after:w-0 after:h-0.5 after:bg-[#F8ED8c] 
+                after:transition-all after:duration-300
+                hover:after:w-[calc(100%-2rem)]"
+          >
+            {route.name}
+          </Link>
           ))}
-        </div>
-
-        {/* Right Section: Login & Sign Up */}
-        <div className="hidden md:flex space-x-3">
-          <button className="text-white hover:bg-blue-700 px-4 py-2 rounded">
-            Login
-          </button>
-          <button className="text-white hover:bg-blue-700 px-4 py-2 rounded">
-            Sign Up
-          </button>
         </div>
 
         {/* Hamburger Menu for Mobile */}
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-white focus:outline-none">
-          <div className="space-y-1.5">
+            <div className="space-y-1.5">
               <div className="w-8 h-0.5 bg-white"></div>
               <div className="w-6 h-0.5 bg-white"></div>
               <div className="w-8 h-[2px] bg-white"></div>
@@ -62,8 +71,17 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-10 md:hidden"
+          onClick={toggleMenu}
+        ></div>
+      )}
+      
       <div
-        className={`fixed top-[50px] left-0 h-full w-64 bg-[#5b913b] transform ${
+        className={`fixed top-0  left-0 h-full w-64 bg-[#5b913b] transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden z-20`}
       >
@@ -88,21 +106,19 @@ const Navbar = () => {
             </svg>
           </button>
           {routes.map((route, index) => (
-            <Link
-              key={index}
-              to={route.path}
-              className="block text-white hover:bg-blue-700 w-full text-left px-4 py-2 rounded"
-              onClick={toggleMenu}
-            >
-              {route.name}
-            </Link>
+        <Link
+        key={index}
+        to={route.path}
+        className="block text-white px-4 py-2 relative w-2/4 text-left
+                 hover:text-[#F8ED8c]
+                 after:content-[''] after:absolute after:bottom-2 after:left-1/2 after:w-0 after:h-[1px] after:bg-[#F8ED8c] 
+                 after:transition-all after:duration-500 after:transform after:-translate-x-1/2
+                 hover:after:w-[90%] hover:after:h-[2px]"
+        onClick={toggleMenu}
+      >
+        {route.name}
+      </Link>
           ))}
-          <button className="block text-white hover:bg-blue-700 w-full text-left px-4 py-2 rounded mt-2">
-            Login
-          </button>
-          <button className="block text-white hover:bg-blue-700 w-full text-left px-4 py-2 rounded mt-2">
-            Sign Up
-          </button>
         </div>
       </div>
     </nav>

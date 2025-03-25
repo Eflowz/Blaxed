@@ -7,7 +7,8 @@ const CartIcon = () => {
   const { getTotalItems } = useContext(ShopContext);
 
   return (
-    <div className="fixed md:top-[500px] top-[550px] right-3 z-50 bg-black p-6 rounded-full "> 
+    // <div className="fixed md:top-[500px] top-[550px] right-3 z-50 bg-black p-6 rounded-full "> 
+    <div className='fixed bottom-6 right-6 bg-black p-6 rounded-full z-50'>
       <Link to='/cart' className='relative'>
         <FiShoppingCart className='w-8 h-8 cursor-pointer text-white' />
         <p className="absolute right-[-10px] bottom-[-10px] w-5 text-center leading-4

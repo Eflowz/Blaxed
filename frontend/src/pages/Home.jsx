@@ -11,9 +11,9 @@ import TypewriterEffect from '../components/TypeWriterEffect';
 const Home = () => {
   return (
     <div>
-      <TypewriterEffect />
+      {/* <TypewriterEffect /> */}
       <Hero/>
-      <Limited endDate="2025-03-17T11:59:59"/>
+      <Limited endDate="2025-03-25T11:59:59"/>
       <BestSeller/>
       <AllCategories/>
       <Display/>
