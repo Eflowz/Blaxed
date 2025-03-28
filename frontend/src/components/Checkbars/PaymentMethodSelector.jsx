@@ -88,9 +88,10 @@ const PaymentMethodSelector = ({ onPaymentMethodSelect }) => {
         id="cardNumber"
         name="number"
         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        placeholder="**** **** **** **** ***"
+        placeholder="**** **** **** **** "
         value={cardDetails.number}
         onChange={handleCardInputChange}
+        maxLength="16"
         />
     </div>
     <div>
@@ -105,6 +106,7 @@ const PaymentMethodSelector = ({ onPaymentMethodSelect }) => {
         placeholder="MM/YY"
         value={cardDetails.expiry}
         onChange={handleCardInputChange}
+        maxLength="3"
         />
     </div>
     <div>
@@ -119,6 +121,7 @@ const PaymentMethodSelector = ({ onPaymentMethodSelect }) => {
         placeholder="***"
         value={cardDetails.cvv}
         onChange={handleCardInputChange}
+        maxLength="3"
         />
                     </div>
                   </div>

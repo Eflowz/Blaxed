@@ -49,7 +49,6 @@ const DeliveryForm = ({ onSubmit }) => {
         <div className="p-6 ">
           <h2 className="text-2xl font-medium mb-4 border-b border-black p-1">Billing Details</h2>
           <form onSubmit={handleSubmit}>
-            {/* First Name & Last Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>

@@ -1,19 +1,23 @@
-import express from 'express'
-import cors from 'cors'
-import 'dotenv/config'
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import sendOrderConfirmation from './api/sendOrderConfirmationPail.js'; 
 
-// App Config
-const app= express()
-const port = process.env.PORT || 4000
 
-// Middlewares
-app.use(express.json());
+dotenv.config(); 
+const app = express();
+const PORT = process.env.PORT || 4000;
+
 app.use(cors());
+app.use(bodyParser.json());
 
-// Api endpoints
+app.get('/', (req, res) => {
+  res.send('Welcome to the API');
+});
 
-app.get('/', (req,res)=> {
-    res.send("API Working")
-})
+app.post('/api/send-order-confirmation', sendOrderConfirmation);
 
-app.listen(port, ()=> console.log('server started on PORT :' + port))
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
