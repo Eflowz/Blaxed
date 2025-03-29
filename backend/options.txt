@@ -1,0 +1,15 @@
+Option 2: Keep Express Server (Alternative)
+
+    Modify vercel.json to use server.js as the entry point:
+    json
+    Copy
+
+    {
+      "version": 2,
+      "builds": [
+        { "src": "server.js", "use": "@vercel/node" }
+      ],
+      "routes": [
+        { "src": "/(.*)", "dest": "server.js" }
+      ]
+    }
