@@ -1,10 +1,12 @@
 {
     "version": 2,
     "builds": [
-      { "src": "api/send-order-confirmation.js", "use": "@vercel/node" }
+      { "src": "api/sendOrderConfirmationPail.js", 
+        "use": "@vercel/node" }
     ],
     "routes": [
-      { "src": "/api/send-order-confirmation", "dest": "/api/send-order-confirmation.js" }
+      { "src": "/api/sendOrderConfirmationPail",
+      "dest": "/api/sendOrderConfirmationPail.js" }
     ]
   }
   

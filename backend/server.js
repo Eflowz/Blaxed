@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the API');
 });
 
-app.post('/api/send-order-confirmation', sendOrderConfirmation);
+app.post('/api/sendOrderConfirmationPail', sendOrderConfirmation);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

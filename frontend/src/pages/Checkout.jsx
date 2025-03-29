@@ -40,20 +40,25 @@ const Checkout = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:4000/api/send-order-confirmation', { 
+      const response = await fetch('/api/sendOrderConfirmationPail', {  
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ deliveryInfo, paymentMethod, orderDetails: order }), 
       });
-
+      
       if (response.ok) {
         console.log('Order confirmation sent');
         setOrderDetails(order); 
         setCurrentStep(3); 
       } else {
-        const errorData = await response.json();
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (jsonError) {
+          errorData = await response.text(); 
+        }
         console.error('Failed to send order confirmation:', errorData);
         alert('Failed to place order. Please try again later.');
       }
@@ -61,7 +66,7 @@ const Checkout = () => {
       console.error('Error connecting:', error);
       alert('Failed to place order. Please check your internet connection.');
     }
-  };
+  };  
 
   return (
     <div className="container mx-auto p-4 max-w-6xl">
