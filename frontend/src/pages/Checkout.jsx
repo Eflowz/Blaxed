@@ -40,7 +40,7 @@ const Checkout = () => {
     };
 
     try {
-      const response = await fetch('/api/sendOrderConfirmationPail', {  
+      const response =await fetch('https://blaxed-1.onrender.com/api/sendOrderConfirmationPail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,6 +48,7 @@ const Checkout = () => {
         body: JSON.stringify({ deliveryInfo, paymentMethod, orderDetails: order }), 
       });
       
+      console.log(response);
       if (response.ok) {
         console.log('Order confirmation sent');
         setOrderDetails(order); 

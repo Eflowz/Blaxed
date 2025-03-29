@@ -2,6 +2,7 @@ import { sendOrderConfirmationEmail } from '../utils/mailer.js';
 
 const handler = async (req, res) => {
   try {
+    console.error('sending...')
     if (req.method !== 'POST') {
       return res.status(405).json({ error: 'Method not allowed' });
     }

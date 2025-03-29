@@ -4,10 +4,9 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import sendOrderConfirmation from './api/sendOrderConfirmationPail.js'; 
 
-
 dotenv.config(); 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
