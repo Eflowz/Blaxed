@@ -15,6 +15,21 @@ const ShopProvider = (props) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } else {
+      localStorage.removeItem('cart');
+    }
+  }, [cart]);
+
+  useEffect(() => {
     setProducts(productsData);
     setFilteredProducts(productsData);
 
@@ -37,7 +52,8 @@ const ShopProvider = (props) => {
       ));
     } else {
       setCart([...cart, { _id, name, price, amount: 1, totalPrice: price, image }]);
-      toast.success('Added to cart successfully!', {
+
+      toast.success(`${name} added to cart!`, {
         position: "top-right",
         autoClose: 2000, 
         hideProgressBar: false,
@@ -52,17 +68,14 @@ const ShopProvider = (props) => {
     setCart(cart.filter(item => item._id !== _id));
   };
 
-  // Get total number of items in the cart
   const getTotalItems = () => {
     return cart.reduce((total, item) => total + item.amount, 0);
   };
 
-  // Get subtotal (sum of all items in the cart)
   const getSubtotal = () => {
     return cart.reduce((total, item) => total + item.totalPrice, 0).toFixed(2);
   };
 
-  // Get total amount (now just the subtotal, no tax)
   const getTotalAmount = () => {
     return getSubtotal(); 
   };

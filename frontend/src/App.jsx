@@ -1,5 +1,6 @@
+import { useLocation } from 'react-router-dom';
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -18,20 +19,27 @@ import AllCategories from './components/category/AllCategories';
 import Footer from './components/Footer';
 import ShopProvider from './context/ShopContext';
 import CartIcon from './components/CartIcon'
-import ThankYou from './pages/ThankYou';
 import Lang from './components/Lang';
 import Whatsapp from './components/Whatsapp';
 
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminLogin from './components/admin/AdminLogin';
+import AdminDashboard from './components/admin/AdminDashboard'
+
 const App = () => {
+
+  const location = useLocation();
+  const hideLayout = location.pathname.startsWith('/admin');
+
   return (
     <ShopProvider>
-      <Lang />
-      <Navbar />
+      {!hideLayout && <Lang />}
+      {!hideLayout && <Navbar/>}
       <AnimatePresence exitBeforeEnter>
       <ScrollToTop>
       <ToastContainer />
-        <CartIcon/>
-        <Whatsapp/>
+      {!hideLayout &&  <CartIcon/>}
+      {!hideLayout &&   <Whatsapp/>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/flower" element={<Flower />} />
@@ -44,11 +52,20 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/all-categories" element={<AllCategories />} />
-        <Route path="/thank-you" element={<ThankYou />} />
+
+
+
+
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        </Route>
       </Routes>
+
+      
       </ScrollToTop>
       </AnimatePresence>
-      <Footer />
+      {!hideLayout && <Footer/>}
     </ShopProvider>
   );
 };

@@ -21,7 +21,7 @@ const Sidebar = ({ handleFilterChange }) => {
   };
 
   return (
-    <div className="space-y-2 -ml-3">
+    <div className="h-full overflow-y-auto p-4 lg:p-0">
       {/* Featured Section */}
       <div className="border rounded-md p-4">
         <div

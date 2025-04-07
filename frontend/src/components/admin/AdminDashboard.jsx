@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getAdminToken, isAdminAuthenticated, logoutAdmin } from '../../utils/authHelper';
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState('');
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminInfo');
-    window.location = '/admin/login';
-  };
-
   useEffect(() => {
+    if (!isAdminAuthenticated()) {
+      logoutAdmin();
+      return;
+    }
+
     const fetchProducts = async () => {
       try {
+        const token = getAdminToken();
+
         const { data } = await axios.get('http://localhost:4000/api/admin/products', {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem('adminInfo')).token}`
-          }
+          headers: { Authorization: `Bearer ${token}` }
         });
+
         setProducts(data);
       } catch (err) {
-        setError(err.response?.data?.error || 'Failed to fetch products');
+        const errorMsg = err.response?.data?.error || 'Failed to fetch products';
+        setError(errorMsg);
+
+        if (err.response?.status === 401 || err.response?.status === 403) {
+          logoutAdmin();
+        }
       }
     };
+
     fetchProducts();
   }, []);
 
@@ -63,7 +71,7 @@ const AdminDashboard = () => {
       <div className="mt-6">
         <button
           className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-          onClick={handleLogout}
+          onClick={logoutAdmin}
         >
           Logout
         </button>

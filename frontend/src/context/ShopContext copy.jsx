@@ -21,6 +21,7 @@ const ShopProvider = (props) => {
     const bestSellingProducts = productsData.filter(product => product.bestseller);
     setBestSellers(bestSellingProducts.slice(0, 6));
   }, []);
+
   const addToCart = (_id, name, price, image, changeAmount = 1) => {
     const existingItem = cart.find(item => item._id === _id);
 
@@ -36,7 +37,8 @@ const ShopProvider = (props) => {
       ));
     } else {
       setCart([...cart, { _id, name, price, amount: 1, totalPrice: price, image }]);
-      toast.success('Added to cart successfully!', {
+
+      toast.success(`${name} added to cart!`, {
         position: "top-right",
         autoClose: 2000, 
         hideProgressBar: false,
@@ -47,15 +49,20 @@ const ShopProvider = (props) => {
     }
   };
 
-  
-    
-    const removeFromCart = (_id) => {
-      setCart(cart.filter(item => item._id !== _id));
-    };
-  
-  // Get total number of items in the cart
+  const removeFromCart = (_id) => {
+    setCart(cart.filter(item => item._id !== _id));
+  };
+
   const getTotalItems = () => {
     return cart.reduce((total, item) => total + item.amount, 0);
+  };
+
+  const getSubtotal = () => {
+    return cart.reduce((total, item) => total + item.totalPrice, 0).toFixed(2);
+  };
+
+  const getTotalAmount = () => {
+    return getSubtotal(); 
   };
 
   const applyFilter = () => {
@@ -87,6 +94,8 @@ const ShopProvider = (props) => {
     addToCart,
     setCart,
     getTotalItems,
+    getSubtotal,
+    getTotalAmount,
     removeFromCart,
     products,
     bestSellers,

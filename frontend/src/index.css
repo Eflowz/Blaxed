@@ -52,3 +52,13 @@
   @keyframes draw {
     to { stroke-dashoffset: 0; }
   }
+
+html, body {
+  overflow-x: hidden;
+}
+.sidebar-transition {
+  transition: transform 0.3s ease-in-out;
+}
+.product-grid-container {
+  max-width: 100%;
+}

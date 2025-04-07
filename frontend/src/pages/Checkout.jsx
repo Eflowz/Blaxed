@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import CartSummary from '../components/CartSummary';
 import DeliveryForm from '../components/DeliveryForm';
@@ -10,7 +10,11 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [orderDetails, setOrderDetails] = useState(null); 
   const [currentStep, setCurrentStep] = useState(1);
-  const { cart, currency } = useContext(ShopContext);
+  const { cart, setCart, currency } = useContext(ShopContext);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
 
   const handleDeliverySubmit = (info) => {
     setDeliveryInfo(info);
@@ -40,7 +44,7 @@ const Checkout = () => {
     };
 
     try {
-      const response =await fetch('https://blaxed-1.onrender.com/api/sendOrderConfirmationPail', {
+      const response = await fetch('https://blaxed-1.onrender.com/api/sendOrderConfirmationPail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,11 +52,10 @@ const Checkout = () => {
         body: JSON.stringify({ deliveryInfo, paymentMethod, orderDetails: order }), 
       });
       
-      console.log(response);
       if (response.ok) {
-        console.log('Order confirmation sent');
         setOrderDetails(order); 
         setCurrentStep(3); 
+        setCart([]); 
       } else {
         let errorData;
         try {
@@ -83,7 +86,6 @@ const Checkout = () => {
 
       {currentStep === 3 ? (
         <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-          {/* Order Confirmation UI */}
           <h2 className="mt-3 text-xl font-medium text-gray-900">Order Placed!</h2>
           <div className="mt-4 text-left max-w-md mx-auto">
             <h3 className="font-medium">Delivery Information:</h3>
