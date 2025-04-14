@@ -78,7 +78,7 @@ app.post('/admin/addTimer', protect, async (req, res) => {
 
   try {
     // Save to DB (overwrite or upsert — for single timer logic)
-    await LimitedOffer.deleteMany(); // Optional: ensure only one exists
+    await LimitedOffer.deleteMany(); 
     const newOffer = await LimitedOffer.create({ endDate });
 
     emitLimitedOfferUpdate(endDate); // Emit to all clients via WebSocket

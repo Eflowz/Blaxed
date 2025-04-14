@@ -7,10 +7,10 @@ import Limited from '../components/Limited';
 import AllCategories from '../components/category/AllCategories';
 import Display from '../components/Disker/Display';
 
-
+// const socket = io('http://localhost:4000');
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:4000';
 
-const socket = io(SOCKET_URL);
+// const socket = io(SOCKET_URL);
 
 const Home = () => {
   const [endDate, setEndDate] = useState(null);
@@ -18,6 +18,7 @@ const Home = () => {
   useEffect(() => {
     const fetchInitialTimer = async () => {
       try {
+        // const response = await fetch('http://localhost:4000/api/currentOffer');
         const response = await fetch(`${SOCKET_URL}/api/currentOffer`);
         const data = await response.json();
         if (data?.endDate) setEndDate(data.endDate);

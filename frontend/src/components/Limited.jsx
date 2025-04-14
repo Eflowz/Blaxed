@@ -46,7 +46,6 @@ return (
     />
     <div className="flex items-center justify-between">
         <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-        {/* <FaEye className="text-gray-500 cursor-pointer" onClick={() => openModal(product)} /> */}
     </div>
     <p className="text-sm text-gray-500 mb-2">{product.desc}</p>
     <div className="flex items-center mb-2">
