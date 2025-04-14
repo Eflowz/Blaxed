@@ -26,6 +26,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdminLogin from './components/admin/AdminLogin';
 import AdminDashboard from './components/admin/AdminDashboard';
 import AddProducts from './components/admin/AddProducts';
+import AdminAddTimer from './components/admin/AdminAddTimer';
 
 const App = () => {
 
@@ -61,6 +62,7 @@ const App = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/add-products" element={<AddProducts />} />
+          <Route path="/admin/add-timer" element={<AdminAddTimer />} />
 
         </Route>
       </Routes>

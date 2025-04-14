@@ -26,6 +26,7 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: false 
   },
+  endDate: Date,
 }, {
   timestamps: true,
 });

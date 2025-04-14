@@ -184,6 +184,11 @@ const AdminDashboard = () => {
             Add Products
           </button>
         </Link>
+        <Link to="/admin/add-timer">
+          <button className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500">
+            Set timer for limited
+          </button>
+        </Link>
         <button
           className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
           onClick={logoutAdmin}
