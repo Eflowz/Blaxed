@@ -4,17 +4,23 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import sendOrderConfirmation from './api/sendOrderConfirmationPail.js';
 import { protect } from './middlewares/authMiddleware.js'; 
 
+import uploadRoute from './Routes/uploadRoute.js'; 
+
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
+mongoose.connect(process.env.MONGO_URI, {
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
@@ -26,19 +32,16 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,  
 });
 
-// Routes
 app.get('/', (req, res) => {
   res.send('Welcome to the API');
 });
 
 app.post('/api/sendOrderConfirmationPail', sendOrderConfirmation);
 
-// Generate JWT Token ✅
 const generateToken = (username) => {
   return jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '2h' });
 };
 
-// Admin Login ✅
 app.post('/admin/login', loginLimiter, (req, res) => {
   const { username, password } = req.body;
 
@@ -61,12 +64,12 @@ app.post('/admin/login', loginLimiter, (req, res) => {
   }
 });
 
-// Protected Dashboard ✅
+  app.use('/admin', uploadRoute);
+
 app.get('/admin/dashboard', protect, (req, res) => {
   res.json({ message: `Welcome to the Admin Dashboard, ${req.admin.username} 🚀` });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });

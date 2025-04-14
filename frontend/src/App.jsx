@@ -24,7 +24,8 @@ import Whatsapp from './components/Whatsapp';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLogin from './components/admin/AdminLogin';
-import AdminDashboard from './components/admin/AdminDashboard'
+import AdminDashboard from './components/admin/AdminDashboard';
+import AddProducts from './components/admin/AddProducts';
 
 const App = () => {
 
@@ -59,6 +60,8 @@ const App = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/add-products" element={<AddProducts />} />
+
         </Route>
       </Routes>
 
