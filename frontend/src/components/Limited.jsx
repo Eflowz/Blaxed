@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { FaEye, FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import CountdownTimer from '../components/CountdownTimer';
 import products from '../assets/presets/products';
 import { ShopContext } from "../context/ShopContext";
 
 const Limited = ({ endDate }) => {
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [offerEnded, setOfferEnded] = useState(false); // Track if the offer has ended
+    const [offerEnded, setOfferEnded] = useState(false); 
     const { currency, addToCart } = useContext(ShopContext);
     const limitedProducts = products.filter(product => product.limited === true);
 
@@ -35,7 +35,7 @@ const Limited = ({ endDate }) => {
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 {limitedProducts.map((product, index) => {
 const discountedPrice = parseFloat((product.price * 0.6).toFixed(2)); // Discounted price
-const displayedPrice = offerEnded ? product.price : discountedPrice; // Show original price if offer ended
+const displayedPrice = offerEnded ? product.price : discountedPrice; 
 
 return (
 <div key={index} className="product bg-white p-4 shadow-md rounded-lg text-left">
@@ -66,11 +66,11 @@ return (
     {/* Price Section */}
     <div className="mb-4">
         <p className={`text-gray-500 ${offerEnded ? '' : 'line-through'}`}>
-            ${parseFloat(product.price).toFixed(2)} {/* Original price */}
+            ${parseFloat(product.price).toFixed(2)} 
         </p>
         {!offerEnded && (
             <p className="text-red-500 font-bold">
-                ${discountedPrice} {/* Discounted price */}
+                ${discountedPrice}
             </p>
         )}
     </div>
