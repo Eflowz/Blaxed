@@ -66,7 +66,7 @@ return (
     {/* Price Section */}
     <div className="mb-4">
         <p className={`text-gray-500 ${offerEnded ? '' : 'line-through'}`}>
-            ${parseFloat(product.price).toFixed(2)} 
+            ${parseFloat(product.price).toFixed(2)} {/* Original price */}
         </p>
         {!offerEnded && (
             <p className="text-red-500 font-bold">

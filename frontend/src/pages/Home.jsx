@@ -7,9 +7,11 @@ import Limited from '../components/Limited';
 import AllCategories from '../components/category/AllCategories';
 import Display from '../components/Disker/Display';
 
-const API_URL = import.meta.env.VITE_API_URL1 || 'http://localhost:4000';
+const API_URL = import.meta.env.VITE_API_URL1;
+
+// const socket = io(API_URL);
 const socket = io(API_URL, {
-  transports: ['websocket'], 
+  transports: ['websocket'],
 });
 const Home = () => {
   const [endDate, setEndDate] = useState(null);
