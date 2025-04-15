@@ -7,19 +7,17 @@ import Limited from '../components/Limited';
 import AllCategories from '../components/category/AllCategories';
 import Display from '../components/Disker/Display';
 
-// const socket = io('http://localhost:4000');
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:4000';
-
-const socket = io(SOCKET_URL);
-
+const API_URL = import.meta.env.VITE_API_URL1 || 'http://localhost:4000';
+const socket = io(API_URL, {
+  transports: ['websocket'], 
+});
 const Home = () => {
   const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     const fetchInitialTimer = async () => {
       try {
-        // const response = await fetch('http://localhost:4000/api/currentOffer');
-        const response = await fetch(`${SOCKET_URL}/api/currentOffer`);
+        const response = await fetch(`${API_URL}/api/currentOffer`);
         const data = await response.json();
         if (data?.endDate) setEndDate(data.endDate);
       } catch (error) {
